@@ -2,6 +2,7 @@
 
 
 "Software Testing Bootcamp" is a community of people interested in software testing. We record the weekly webinars that we organize and publish them on Youtube.
+For more information -> https://testingbootcamp.com/
 
 **Youtube Webinar Video:**
 
