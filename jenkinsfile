@@ -1,0 +1,78 @@
+pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "Maven 3.8.2"
+        jdk "JDK8"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/software-testing-bootcamp/rest-assured-testng-java-api-testautomation.git'
+
+                // Run Maven on a Unix agent.
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    // junit '**/target/surefire-reports/TEST-*.xml'
+                  // archiveArtifacts 'target/*.jar'
+                  echo 'success'
+                }
+            }
+        }
+        
+        
+        stage('Test: Unit Test') {
+            steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+        stage('Analysis: Static Code') {
+            steps {
+                echo 'Static Code'
+            }
+        }
+        stage('Package: Archive Artifact') {
+            steps {
+                archiveArtifacts 'target/*.jar'
+            }
+        }
+        stage('Deployment: DEV') {
+            steps {
+                echo 'DEV'
+            }
+        }
+        stage('Test: Functional API Test') {
+            steps {
+                 sh "mvn clean test"
+            }
+        }
+        stage('Test: Security Test') {
+            steps {
+                echo 'Security Test'
+            }
+        }
+        stage('Test: Performance Test') {
+            steps {
+                echo 'Performance Test'
+            }
+        }
+        stage('Deployment: TEST') {
+            steps {
+                echo 'Deployment: TEST'
+            }
+        }
+        
+        
+    }
+}
