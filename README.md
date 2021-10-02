@@ -121,7 +121,7 @@ https://www.jenkins.io/doc/book/installing/macos/
 
 **Jenkins Pipeline example with automation**
 
-Details on the Youtube video
+Groovy script (Jenkinsfile) is on this repository and details on the Youtube video
 
 ![image](https://user-images.githubusercontent.com/89974862/135720795-43b17461-5e53-436d-92af-efa86b62d86a.png)
 
